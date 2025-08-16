@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Task - HTML, CSS & JS</title>
+  <style>
+    /* ---------- Global Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #f1f1f1;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffca28;
+    }
+
+    /* ---------- Grid Layout ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    /* ---------- Contact Form ---------- */
+    .form-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-card input, 
+    .form-card textarea, 
+    .form-card button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .form-card input:focus, 
+    .form-card textarea:focus {
+      border-color: #42a5f5;
+      outline: none;
+      box-shadow: 0 0 8px rgba(66,165,245,0.5);
+    }
+
+    .form-card button {
+      background: #42a5f5;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-card button:hover {
+      background: #1e88e5;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+
+    /* ---------- To-Do List ---------- */
+    .todo-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .todo-card input {
+      width: 75%;
+      display: inline-block;
+    }
+
+    .todo-card button {
+      width: 20%;
+      background: #66bb6a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .todo-card button:hover {
+      background: #43a047;
+    }
+
+    ul {
+      margin-top: 15px;
+      list-style: none;
+    }
+
+    ul li {
+      background: #f1f1f1;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    ul li:hover {
+      background: #e3f2fd;
+    }
+
+    ul li button {
+      background: #ef5350;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+
+    ul li button:hover {
+      background: #c62828;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      border-radius: 15px 15px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ---------- Header ---------- -->
+  <header>
+    <h1>My Internship Task</h1>
+    <nav>
+      <a href="#contact">Contact Form</a>
+      <a href="#todo">To-Do List</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      
+      <!-- ---------- Contact Form ---------- -->
+      <div class="form-card" id="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your Name">
+          <span id="nameError" class="error"></span>
+
+          <input type="email" id="email" placeholder="Your Email">
+          <span id="emailError" class="error"></span>
+
+          <textarea id="message" placeholder="Your Message"></textarea>
+          <span id="messageError" class="error"></span>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- ---------- To-Do List ---------- -->
+      <div class="todo-card" id="todo">
+        <h2>My To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------- Footer ---------- -->
+  <footer>
+    <p>Developed as Internship Task | ApexPlanet Software Pvt Ltd</p>
+  </footer>
+
+  <!-- ---------- JavaScript ---------- -->
+  <script>
+    // Contact Form Validation
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let isValid = true;
+      let name = document.getElementById('name').value.trim();
+      let email = document.getElementById('email').value.trim();
+      let message = document.getElementById('message').value.trim();
+
+      // Reset errors
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('messageError').textContent = '';
+
+      if (name === '') {
+        document.getElementById('nameError').textContent = "Name is required.";
+        isValid = false;
+      }
+
+      if (email === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('emailError').textContent = "Enter a valid email.";
+        isValid = false;
+      }
+
+      if (message === '') {
+        document.getElementById('messageError').textContent = "Message cannot be empty.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Form submitted successfully!");
+        document.getElementById('contactForm').reset();
+      }
+    });
+
+    // To-Do List Functionality
+    function addTask() {
+      let taskInput = document.getElementById('taskInput');
+      let taskValue = taskInput.value.trim();
+      if (taskValue === '') return;
+
+      let li = document.createElement('li');
+      li.textContent = taskValue;
+
+      let deleteBtn = document.createElement('button');
+      deleteBtn.textContent = "Delete";
+      deleteBtn.onclick = function() {
+        li.remove();
+      };
+
+      li.appendChild(deleteBtn);
+      document.getElementById('taskList').appendChild(li);
+      taskInput.value = '';
+    }
+  </script>
+
+</body>
+</html>
