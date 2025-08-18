@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Interactive Web App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f9;
+      text-align: center;
+    }
+
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover { background: #005fa3; }
+
+    /* Carousel styling */
+    .carousel {
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+    }
+    .carousel img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      .container { padding: 10px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      header { font-size: 18px; }
+      .section { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Responsive Interactive Web App</h1>
+    <p>Media Queries + Quiz + Carousel + API Fetch</p>
+  </header>
+
+  <div class="container">
+
+    <!-- QUIZ SECTION -->
+    <div class="section">
+      <h2>🎯 Take a Quick Quiz</h2>
+      <div id="quiz"></div>
+      <button onclick="checkAnswers()">Submit Quiz</button>
+      <p id="quiz-result"></p>
+    </div>
+
+    <!-- CAROUSEL SECTION -->
+    <div class="section">
+      <h2>🖼️ Image Carousel</h2>
+      <div class="carousel">
+        <img id="carousel-img" src="https://picsum.photos/id/101/400/250" alt="carousel">
+        <br>
+        <button onclick="prevImage()">⏮ Prev</button>
+        <button onclick="nextImage()">Next ⏭</button>
+      </div>
+    </div>
+
+    <!-- API FETCH SECTION -->
+    <div class="section">
+      <h2>😂 Random Joke Generator</h2>
+      <button onclick="getJoke()">Get a Joke</button>
+      <p id="joke"></p>
+    </div>
+
+  </div>
+
+  <script>
+    /* QUIZ CODE */
+    const quizData = [
+      { question: "What is 5 + 3?", options: ["7", "8", "9"], answer: "8" },
+      { question: "Capital of Japan?", options: ["Tokyo", "Beijing", "Seoul"], answer: "Tokyo" },
+      { question: "Which language runs in the browser?", options: ["Python", "JavaScript", "C++"], answer: "JavaScript" }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+    quizData.forEach((q, i) => {
+      quizContainer.innerHTML += `
+        <p><b>${q.question}</b></p>
+        ${q.options.map(opt =>
+          `<label><input type="radio" name="q${i}" value="${opt}"> ${opt}</label><br>`
+        ).join("")}
+      `;
+    });
+
+    function checkAnswers() {
+      let score = 0;
+      quizData.forEach((q, i) => {
+        const selected = document.querySelector(`input[name=q${i}]:checked`);
+        if (selected && selected.value === q.answer) score++;
+      });
+      document.getElementById("quiz-result").innerText = `✅ Your Score: ${score}/${quizData.length}`;
+    }
+
+    /* CAROUSEL CODE */
+    const images = [
+      "https://picsum.photos/id/101/400/250",
+      "https://picsum.photos/id/102/400/250",
+      "https://picsum.photos/id/103/400/250",
+      "https://picsum.photos/id/104/400/250"
+    ];
+    let index = 0;
+
+    function showImage(i) {
+      document.getElementById("carousel-img").src = images[i];
+    }
+
+    function nextImage() {
+      index = (index + 1) % images.length;
+      showImage(index);
+    }
+
+    function prevImage() {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    }
+
+    /* AUTO ROTATE CAROUSEL */
+    setInterval(nextImage, 3000);
+
+    /* API FETCH CODE */
+    async function getJoke() {
+      document.getElementById("joke").innerText = "Loading...";
+      try {
+        const res = await fetch("https://official-joke-api.appspot.com/random_joke");
+        const data = await res.json();
+        document.getElementById("joke").innerText = `${data.setup} - ${data.punchline}`;
+      } catch (error) {
+        document.getElementById("joke").innerText = "⚠️ Failed to fetch joke!";
+      }
+    }
+  </script>
+
+</body>
+</html>
