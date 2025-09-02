@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects | Niharika</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Niharika<span>.</span></a>
+    <button class="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+    <nav class="nav" id="primary-nav">
+      <a href="index.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Projects</h1>
+    <div class="grid cards">
+      <article class="card">
+        <h3>HealthAI Assistant</h3>
+        <p>Flask app with IBM Watsonx models for chat, disease prediction, and charts.</p>
+        <div class="tags"><span>Flask</span><span>Watsonx</span><span>Chart.js</span></div>
+      </article>
+      <article class="card">
+        <h3>Car Price Prediction</h3>
+        <p>ML model with `.h5` exports and a simple web interface for predictions.</p>
+        <div class="tags"><span>ML</span><span>Flask</span><span>Python</span></div>
+      </article>
+      <article class="card">
+        <h3>Fraud Detection</h3>
+        <p>Credit card anomaly detection using balanced datasets and metrics.</p>
+        <div class="tags"><span>ML</span><span>Pandas</span><span>Sklearn</span></div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Niharika</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Niharika | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Niharika<span>.</span></a>
+    <button class="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+    <nav class="nav" id="primary-nav">
+      <a href="index.html" class="active">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Hi, I’m Niharika</h1>
+      <p class="lead">A CSE student building clean, usable web apps and ML projects.</p>
+      <div class="cta-row">
+        <a class="btn" href="projects.html">See Projects</a>
+        <a class="btn btn-secondary" href="contact.html">Contact Me</a>
+      </div>
+    </section>
+
+    <section class="about grid-2">
+      <div>
+        <h2>About Me</h2>
+        <p>I enjoy turning problems into simple, beautiful, and intuitive designs. 
+        My current interests include ML (SVMs, fraud detection), full‑stack with Flask, and data viz.</p>
+        <ul class="bullets">
+          <li>Languages: Python, JS, C#</li>
+          <li>Web: HTML, CSS, Flask</li>
+          <li>Tools: VS Code, Git, Jupyter</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Highlights</h3>
+        <ul class="checklist">
+          <li>HealthAI assistant using IBM Watsonx.</li>
+          <li>Car Price Prediction (Flask + ML).</li>
+          <li>Credit Card Fraud Detection.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Niharika • <a href="projects.html">Projects</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
