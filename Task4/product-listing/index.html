@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Listing — Filter & Sort</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Shop Demo</h1>
+    <input id="search" placeholder="Search products…" />
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <label>Category</label>
+        <div id="categories" class="chips"></div>
+      </div>
+
+      <div class="filter-group">
+        <label>Price (₹)</label>
+        <div class="range">
+          <input id="minPrice" type="number" min="0" step="500" value="0" />
+          <span>to</span>
+          <input id="maxPrice" type="number" min="0" step="500" value="100000" />
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label>Minimum Rating</label>
+        <select id="minRating">
+          <option value="0">Any</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="4.5">4.5+</option>
+        </select>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <span id="count">0 items</span>
+        <select id="sort">
+          <option value="relevance">Sort: Relevance</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating-desc">Rating: High → Low</option>
+          <option value="name-asc">Name: A → Z</option>
+        </select>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Demo only • Client-side filtering</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
