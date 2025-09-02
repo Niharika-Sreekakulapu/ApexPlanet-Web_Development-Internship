@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To‑Do App (localStorage)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>To‑Do</h1>
+    <div class="row">
+      <input id="todo-input" placeholder="Add a task and press Enter…" maxlength="120" />
+      <button id="add-btn" class="btn">Add</button>
+    </div>
+    <div class="controls">
+      <div class="filters">
+        <button data-filter="all" class="chip active">All</button>
+        <button data-filter="active" class="chip">Active</button>
+        <button data-filter="completed" class="chip">Completed</button>
+      </div>
+      <span id="count" class="muted">0 items</span>
+    </div>
+    <ul id="list" class="list"></ul>
+    <div class="footer">
+      <button id="clear-completed" class="link">Clear completed</button>
+      <button id="export" class="link">Export JSON</button>
+      <input id="import-file" type="file" accept="application/json" style="display:none" />
+      <button id="import" class="link">Import JSON</button>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
